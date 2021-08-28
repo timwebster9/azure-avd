@@ -9,7 +9,7 @@ resource "azuread_group" "dc_admins" {
 }
 
 resource "azuread_user" "dc_admin" {
-  user_principal_name = "dc-admin@avd.net"
+  user_principal_name = "dc-admin@timwebster9outlookcom.onmicrosoft.com"
   display_name        = "DC Administrator"
   password            = "AVDpassword!"
 }
