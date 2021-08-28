@@ -5,6 +5,7 @@ resource "azurerm_resource_group" "avd-vnet" {
 }
 
 # VNET
+# https://www.davidc.net/sites/default/subnets/subnets.html?network=10.0.0.0&mask=16&division=25.fff0000
 resource "azurerm_virtual_network" "avd" {
   name                = "avd-vnet"
   location            = azurerm_resource_group.avd-vnet.location
@@ -19,6 +20,13 @@ resource "azurerm_subnet" "adds-sn" {
   resource_group_name  = azurerm_resource_group.avd-vnet.name
   virtual_network_name = azurerm_virtual_network.avd.name
   address_prefixes     = [var.cidr_adds_subnet]
+}
+
+resource "azurerm_subnet" "avd-hosts-sn" {
+  name                 = "avd-hosts-sn"
+  resource_group_name  = azurerm_resource_group.avd-vnet.name
+  virtual_network_name = azurerm_virtual_network.avd.name
+  address_prefixes     = [var.cidr_avd_hosts_subnet]
 }
 
 # AD DS NSG
