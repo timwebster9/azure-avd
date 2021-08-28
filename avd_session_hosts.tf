@@ -52,7 +52,7 @@ resource "azurerm_virtual_machine_extension" "vm1ext_domain_join" {
   settings = <<-SETTINGS
     {
       "Name": "avd.net",
-      "OUPath": "OU=secondlevel,OU=firstlevel,DC=avd,DC=net",
+      "OUPath": "",
       "User": "${var.adds_admin_username}",
       "Restart": "true",
       "Options": "3"
