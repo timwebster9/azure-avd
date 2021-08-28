@@ -20,7 +20,7 @@ resource "azurerm_windows_virtual_machine" "wvd_vm1" {
   name                  = "host1"
   resource_group_name   = azurerm_resource_group.avd-hosts.name
   location              = azurerm_resource_group.avd-hosts.location
-  size                  = "Standard_B1s"
+  size                  = "Standard_D2s_v3"
   network_interface_ids = [ azurerm_network_interface.wvd_vm1_nic.id ]
   
   admin_username = "azureuser"
@@ -29,7 +29,7 @@ resource "azurerm_windows_virtual_machine" "wvd_vm1" {
   os_disk {
     name                 = "disk1"
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    storage_account_type = "StandardSSD_LRS"
   }
 
   source_image_reference {
