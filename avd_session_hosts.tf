@@ -85,7 +85,7 @@ resource "azurerm_virtual_machine_extension" "vm1ext_dsc" {
       "modulesUrl": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration.zip",
       "configurationFunction": "Configuration.ps1\\AddSessionHost",
       "properties": {
-        "hostPoolName": "${var.var.host_pool_name}",
+        "hostPoolName": "${var.host_pool_name}",
         "registrationInfoToken": "${azurerm_virtual_desktop_host_pool.avd-pool.registration_info[0].token}"
       }
     }
@@ -95,5 +95,5 @@ resource "azurerm_virtual_machine_extension" "vm1ext_dsc" {
     ignore_changes = [ settings ]
   }
 
-  depends_on = [ azurerm_virtual_machine_extension.ext_domain_join ]
+  depends_on = [ azurerm_virtual_machine_extension.vm1ext_domain_join ]
 }
