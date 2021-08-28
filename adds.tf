@@ -1,8 +1,9 @@
-resource "azurerm_resource_group" "adds" {
-  name     = "adds-rg"
-  location = var.location
-}
-
+####################################
+# Azure AD Resources 
+#
+# SP Azure AD permissions required:
+#   - User Administrator
+####################################
 resource "azuread_group" "dc_admins" {
   display_name      = "AAD DC Administrators"
   security_enabled  = true
@@ -19,3 +20,36 @@ resource "azuread_group_member" "admin" {
   member_object_id = azuread_user.dc_admin.object_id
 }
 
+####################################
+# Active Directory Domain Services 
+####################################
+resource "azurerm_resource_group" "adds" {
+  name     = "adds-rg"
+  location = var.location
+}
+
+resource "azurerm_active_directory_domain_service" "adds" {
+  name                = "avd-adds"
+  location            = azurerm_resource_group.adds.location
+  resource_group_name = azurerm_resource_group.adds.name
+
+  domain_name           = "avd.net"
+  sku                   = "Standard"
+  filtered_sync_enabled = false
+
+  initial_replica_set {
+    subnet_id = azurerm_subnet.adds-sn.id
+  }
+
+  notifications {
+    additional_recipients = ["tim.webster@contino.io"]
+    notify_dc_admins      = true
+    notify_global_admins  = true
+  }
+
+  security {
+    sync_kerberos_passwords = true
+    sync_ntlm_passwords     = true
+    sync_on_prem_passwords  = true
+  }
+}
