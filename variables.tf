@@ -42,11 +42,6 @@ variable "adds_admin_username" {
     description = "AD DS admin user"
 }
 
-variable "adds_admin_password" {
-    type        = string
-    description = "AD DS admin user passsword"
-}
-
 #########################
 # Azure Virtual Desktop 
 #########################
