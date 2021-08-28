@@ -10,9 +10,9 @@ resource "azuread_group" "dc_admins" {
 }
 
 resource "azuread_user" "dc_admin" {
-  user_principal_name = "dc-admin@timwebster9outlookcom.onmicrosoft.com"
+  user_principal_name = var.adds_admin_username
   display_name        = "DC Administrator"
-  password            = "AVDpassword!"
+  password            = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
 resource "azuread_group_member" "admin" {

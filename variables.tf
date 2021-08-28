@@ -33,3 +33,24 @@ variable "adds_dc2_ip" {
     type        = string
     description = "AD DS domain controller 2 IP address"
 }
+
+#####################
+# AD Domain Services 
+#####################
+variable "adds_admin_username" {
+    type        = string
+    description = "AD DS admin user"
+}
+
+variable "adds_admin_password" {
+    type        = string
+    description = "AD DS admin user passsword"
+}
+
+#########################
+# Azure Virtual Desktop 
+#########################
+variable "host_pool_name" {
+    type        = string
+    description = "AVD host pool name"
+}
