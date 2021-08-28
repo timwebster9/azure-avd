@@ -1,5 +1,5 @@
 data "azurerm_key_vault" "mgmt-kv" {
-  name                = "mgmtkvtimw"
+  name                = "timwmgmtkv"
   resource_group_name = "mgmt-rg"
 }
 
