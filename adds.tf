@@ -4,7 +4,8 @@ resource "azurerm_resource_group" "adds" {
 }
 
 resource "azuread_group" "dc_admins" {
-  display_name = "AAD DC Administrators"
+  display_name      = "AAD DC Administrators"
+  security_enabled  = true
 }
 
 resource "azuread_user" "dc_admin" {
