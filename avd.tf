@@ -17,6 +17,10 @@ resource "azurerm_virtual_desktop_host_pool" "avd-pool" {
   type                     = "Pooled"
   maximum_sessions_allowed = 2
   load_balancer_type       = "DepthFirst"
+
+  registration_info {
+    expiration_date = "2021-09-20T08:00:00Z"               # Must be set to a time between 1 hour in the future & 27 days in the future
+  }
 }
 
 resource "azurerm_virtual_desktop_application_group" "desktopapp" {
