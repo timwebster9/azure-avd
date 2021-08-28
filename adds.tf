@@ -2,7 +2,7 @@
 # Azure AD Resources 
 #
 # SP Azure AD permissions required:
-#   - User Administrator
+#   - Global Administrator (https://docs.microsoft.com/en-us/azure/active-directory-domain-services/powershell-create-instance#prerequisites)
 ####################################
 resource "azuread_group" "dc_admins" {
   display_name      = "AAD DC Administrators"
