@@ -10,6 +10,7 @@ resource "azurerm_virtual_network" "avd" {
   location            = azurerm_resource_group.avd-vnet.location
   resource_group_name = azurerm_resource_group.avd-vnet.name
   address_space       = [var.cidr_avd_vnet]
+  dns_servers         = [var.adds_dc1_ip, var.adds_dc2_ip]
 }
 
 # SUBNETS
