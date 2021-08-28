@@ -25,6 +25,6 @@ jobs:
       - name: Terrafrom destroy
         run: terraform destroy -auto-approve
 
-      # - name: Terrafrom destroy (retry)
-      #   if: ${{ failure() }}
-      #   run: terraform destroy -auto-approve
+      - name: Terrafrom destroy (retry)
+        if: ${{ failure() }}
+        run: terraform destroy -auto-approve
