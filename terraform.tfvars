@@ -21,4 +21,4 @@ adds_admin_username = "dc-admin@timwebster9outlookcom.onmicrosoft.com"
 #########################
 # Azure Virtual Desktop 
 #########################
-host_pool_name = "pooldepthfirst"
+host_pool_name = "pooleddepthfirst"
