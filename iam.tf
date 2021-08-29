@@ -55,7 +55,7 @@ resource "azurerm_role_assignment" "avd_users_storage" {
 }
 
 # Role assignment for AVD applicaton groups
-resource "azurerm_role_assignment" "avd_users_storage" {
+resource "azurerm_role_assignment" "avd_application_group_assignment" {
   scope                = azurerm_virtual_desktop_application_group.desktopapp.id # Desktop application group
   role_definition_id   = "1d18fff3-a72a-46b5-b4a9-0b38a3cd7e63"                  # Desktop Virtualization User
   principal_id         = azuread_group.avd_users.object_id                       # AVD Users group
