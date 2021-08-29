@@ -5,8 +5,8 @@ resource "azurerm_resource_group" "avd_storage_rg" {
 
 resource "azurerm_storage_account" "avd_storage" {
   name                          = "avdstorage345354355"
-  resource_group_name           = azurerm_resource_group.avd-storage.name
-  location                      = azurerm_resource_group.avd-storage.location
+  resource_group_name           = azurerm_resource_group.avd_storage_rg.name
+  location                      = azurerm_resource_group.avd_storage_rg.location
   account_kind                  = "StorageV2"
   account_tier                  = "Standard"
   account_replication_type      = "LRS"
