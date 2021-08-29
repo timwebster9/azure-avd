@@ -17,6 +17,7 @@ adds_dc2_ip             = "10.0.0.5"
 # AD Domain Services 
 #####################
 adds_admin_username = "dc-admin@timwebster9outlookcom.onmicrosoft.com"
+adds_admin = "dc-admin@avd.net"
 
 #########################
 # Azure Virtual Desktop 
