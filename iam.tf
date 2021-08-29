@@ -20,7 +20,7 @@ resource "azuread_user" "dc_admin" {
 resource "azurerm_role_assignment" "dc_admin_fileshares" {
   scope                = azurerm_storage_account.avd_storage.id # AVD storage account
   role_definition_name = "Storage File Data SMB Share Elevated Contributor"
-  principal_id         = azuread_user.dc_admin.object_id        # AD DS admin
+  principal_id         = azuread_group.dc_admins.object_id      # AD DS admins group
 }
 
 ###############################
