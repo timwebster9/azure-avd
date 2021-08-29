@@ -42,6 +42,11 @@ variable "adds_dc2_ip" {
 #####################
 # AD Domain Services 
 #####################
+variable "adds_domain" {
+    type        = string
+    description = "AD DS domain name"
+}
+
 variable "adds_admin_username" {
     type        = string
     description = "AD DS admin user"

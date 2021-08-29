@@ -13,7 +13,7 @@ resource "azurerm_active_directory_domain_service" "adds" {
   location            = azurerm_resource_group.adds.location
   resource_group_name = azurerm_resource_group.adds.name
 
-  domain_name           = "avd.net"
+  domain_name           = var.adds_domain
   sku                   = "Standard"
   filtered_sync_enabled = false
 

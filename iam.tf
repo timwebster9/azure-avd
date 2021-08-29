@@ -19,7 +19,7 @@ resource "azuread_user" "dc_admin" {
 
 resource "azurerm_role_assignment" "dc_admin_fileshares" {
   scope                = azurerm_storage_account.avd_storage.id # AVD storage account
-  role_definition_id   = "a7264617-510b-434b-a828-9731dc254ea7" # Storage File Data SMB Share Elevated Contributor
+  role_definition_name = "Storage File Data SMB Share Elevated Contributor"
   principal_id         = azuread_user.dc_admin.object_id        # AD DS admin
 }
 
@@ -51,13 +51,13 @@ resource "azuread_user" "avd_user1" {
 # Role assignment for AVD file shares
 resource "azurerm_role_assignment" "avd_users_storage" {
   scope                = azurerm_storage_account.avd_storage.id # AVD storage account
-  role_definition_id   = "0c867c2a-1d8c-454a-a3db-ab2ea1bdc8bb" # Storage File Data SMB Share Contributor
+  role_definition_name = "Storage File Data SMB Share Contributor"
   principal_id         = azuread_group.avd_users.object_id      # AVD Users group
 }
 
 # Role assignment for AVD applicaton groups
 resource "azurerm_role_assignment" "avd_application_group_assignment" {
   scope                = azurerm_virtual_desktop_application_group.desktopapp.id # Desktop application group
-  role_definition_id   = "1d18fff3-a72a-46b5-b4a9-0b38a3cd7e63"                  # Desktop Virtualization User
+  role_definition_name = "Desktop Virtualization User"
   principal_id         = azuread_group.avd_users.object_id                       # AVD Users group
 }

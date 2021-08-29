@@ -51,7 +51,7 @@ resource "azurerm_virtual_machine_extension" "vm1ext_domain_join" {
 
   settings = <<-SETTINGS
     {
-      "Name": "avd.net",
+      "Name": "${var.adds_domain}",
       "OUPath": "",
       "User": "${var.adds_admin}",
       "Restart": "true",

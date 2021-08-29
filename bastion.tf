@@ -46,3 +46,35 @@ resource "azurerm_windows_virtual_machine" "bastion" {
     version   = "latest"
   }
 }
+
+# Join this to the AD DS domain
+resource "azurerm_virtual_machine_extension" "bastion_domain_join" {
+  name                       = "domainjoinextension"
+  virtual_machine_id         = azurerm_windows_virtual_machine.bastion.id
+  publisher                  = "Microsoft.Compute"
+  type                       = "JsonADDomainExtension"
+  type_handler_version       = "1.3"
+  auto_upgrade_minor_version = true
+
+  settings = <<-SETTINGS
+    {
+      "Name": "${var.adds_domain}",
+      "OUPath": "",
+      "User": "${var.adds_admin}",
+      "Restart": "true",
+      "Options": "3"
+    }
+    SETTINGS
+
+  protected_settings = <<-PSETTINGS
+    {
+      "Password":"${data.azurerm_key_vault_secret.adds-admin-password.value}"
+    }
+    PSETTINGS
+
+  lifecycle {
+    ignore_changes = [ settings, protected_settings ]
+  }
+
+  depends_on = [ azurerm_active_directory_domain_service.adds ]
+}
