@@ -24,7 +24,7 @@ resource "azurerm_network_interface" "bastion_nic" {
 }
 
 resource "azurerm_windows_virtual_machine" "bastion" {
-  name                  = "host1"
+  name                  = "bastion-vm"
   resource_group_name   = azurerm_resource_group.bastion-hosts.name
   location              = azurerm_resource_group.bastion-hosts.location
   size                  = "Standard_D2s_v3"

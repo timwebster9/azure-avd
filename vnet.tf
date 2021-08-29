@@ -43,7 +43,7 @@ resource "azurerm_network_security_group" "bastion" {
   resource_group_name = azurerm_resource_group.avd-vnet.name
 
   security_rule {
-    name                       = "AllowSyncWithAzureAD"
+    name                       = "allow-rdp-home"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
