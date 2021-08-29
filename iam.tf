@@ -12,9 +12,10 @@ resource "azuread_group_member" "dc_admin_group_assignment" {
 }
 
 resource "azuread_user" "dc_admin" {
-  user_principal_name = var.adds_admin_username
-  display_name        = "DC Administrator"
-  password            = data.azurerm_key_vault_secret.adds-admin-password.value
+  user_principal_name     = var.adds_admin_username
+  display_name            = "DC Administrator"
+  force_password_change   = false # default setting but including for info
+  password                = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
 resource "azurerm_role_assignment" "dc_admin_fileshares" {
@@ -37,15 +38,17 @@ resource "azuread_group" "avd_users" {
 }
 
 resource "azuread_user" "avd_user" {
-  user_principal_name = "avduser@timwebster9outlookcom.onmicrosoft.com"
-  display_name        = "AVD User"
-  password            = data.azurerm_key_vault_secret.avd-user1-password.value
+  user_principal_name     = "avduser@timwebster9outlookcom.onmicrosoft.com"
+  display_name            = "AVD User"
+  force_password_change   = false
+  password                = data.azurerm_key_vault_secret.avd-user-password.value
 }
 
 resource "azuread_user" "avd_user1" {
-  user_principal_name = "avduser1@timwebster9outlookcom.onmicrosoft.com"
-  display_name        = "AVD User1"
-  password            = data.azurerm_key_vault_secret.avd-user1-password.value
+  user_principal_name     = "avduser1@timwebster9outlookcom.onmicrosoft.com"
+  display_name            = "AVD User1"
+  force_password_change   = false
+  password                = data.azurerm_key_vault_secret.avd-user1-password.value
 }
 
 # Role assignment for AVD file shares

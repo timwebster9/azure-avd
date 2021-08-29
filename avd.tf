@@ -23,6 +23,61 @@ resource "azurerm_virtual_desktop_host_pool" "avd-pool" {
   }
 }
 
+# Diagnostic settings
+resource "azurerm_monitor_diagnostic_setting" "avd-pool-diags" {
+  name               = "adds-diags"
+  target_resource_id = azurerm_virtual_desktop_host_pool.avd-pool.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.avd-workspace.id
+
+  log {
+    category = "Checkpoint"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Error"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Management"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Connection"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "HostRegistration"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "AgentHealthStatus"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+}
+
 resource "azurerm_virtual_desktop_application_group" "desktopapp" {
   name                = "appgroupdesktop"
   location            = azurerm_resource_group.avd.location
@@ -34,6 +89,36 @@ resource "azurerm_virtual_desktop_application_group" "desktopapp" {
   description   = "Acceptance Test: An application group"
 }
 
+resource "azurerm_monitor_diagnostic_setting" "desktopapps-appgroup-diags" {
+  name               = "adds-diags"
+  target_resource_id = azurerm_virtual_desktop_application_group.desktopapp.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.avd-workspace.id
+
+  log {
+    category = "Checkpoint"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Error"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Management"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+}
+
 resource "azurerm_virtual_desktop_workspace" "workspace" {
   name                = "workspace"
   location            = azurerm_resource_group.avd.location
@@ -41,6 +126,44 @@ resource "azurerm_virtual_desktop_workspace" "workspace" {
 
   friendly_name = "FriendlyName"
   description   = "A description of my workspace"
+}
+
+resource "azurerm_monitor_diagnostic_setting" "avd-workspace-diags" {
+  name               = "adds-diags"
+  target_resource_id = azurerm_virtual_desktop_workspace.workspace.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.avd-workspace.id
+
+  log {
+    category = "Checkpoint"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Error"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Management"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "Feed"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
 }
 
 resource "azurerm_virtual_desktop_workspace_application_group_association" "workspaceremoteapp" {

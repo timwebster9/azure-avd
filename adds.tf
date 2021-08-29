@@ -37,3 +37,82 @@ resource "azurerm_active_directory_domain_service" "adds" {
     azuread_group_member.dc_admin_group_assignment
   ]
 }
+
+# Diagnostic settings
+resource "azurerm_monitor_diagnostic_setting" "adds-diags" {
+  name               = "adds-diags"
+  target_resource_id = azurerm_active_directory_domain_service.adds.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.avd-workspace.id
+
+  log {
+    category = "SystemSecurity"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "AccountManagement"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "LogonLogoff"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "ObjectAccess"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "PolicyChange"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "PrivilegeUse"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "DetailTracking"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "DirectoryServiceAccess"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  log {
+    category = "AccountLogon"
+    enabled  = true
+    retention_policy {
+      enabled = false
+    }
+  }
+}
