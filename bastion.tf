@@ -23,12 +23,12 @@ resource "azurerm_network_interface" "bastion_nic" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "wvd_vm1" {
+resource "azurerm_windows_virtual_machine" "bastion" {
   name                  = "host1"
-  resource_group_name   = azurerm_resource_group.avd-hosts.name
-  location              = azurerm_resource_group.avd-hosts.location
+  resource_group_name   = azurerm_resource_group.bastion-hosts.name
+  location              = azurerm_resource_group.bastion-hosts.location
   size                  = "Standard_D2s_v3"
-  network_interface_ids = [ azurerm_network_interface.wvd_vm1_nic.id ]
+  network_interface_ids = [ azurerm_network_interface.bastion_nic.id ]
   
   admin_username = "azureuser"
   admin_password = data.azurerm_key_vault_secret.bastion-vm-password.value
