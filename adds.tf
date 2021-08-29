@@ -1,27 +1,7 @@
 ####################################
-# Azure AD Resources 
-#
+# Active Directory Domain Services
 # SP Azure AD permissions required:
 #   - Global Administrator (https://docs.microsoft.com/en-us/azure/active-directory-domain-services/powershell-create-instance#prerequisites)
-####################################
-resource "azuread_group" "dc_admins" {
-  display_name      = "AAD DC Administrators"
-  security_enabled  = true
-}
-
-resource "azuread_user" "dc_admin" {
-  user_principal_name = var.adds_admin_username
-  display_name        = "DC Administrator"
-  password            = data.azurerm_key_vault_secret.adds-admin-password.value
-}
-
-resource "azuread_group_member" "admin" {
-  group_object_id  = azuread_group.dc_admins.object_id
-  member_object_id = azuread_user.dc_admin.object_id
-}
-
-####################################
-# Active Directory Domain Services 
 ####################################
 resource "azurerm_resource_group" "adds" {
   name     = "adds-rg"
