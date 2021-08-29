@@ -19,6 +19,11 @@ variable "cidr_adds_subnet" {
     description = "AD DS subnet address space"
 }
 
+variable "cidr_bastion_subnet" {
+    type        = string
+    description = "Bastion subnet address space"
+}
+
 variable "cidr_avd_hosts_subnet" {
     type        = string
     description = "AVD hosts subnet address space"

@@ -29,6 +29,37 @@ resource "azurerm_subnet" "avd-hosts-sn" {
   address_prefixes     = [var.cidr_avd_hosts_subnet]
 }
 
+resource "azurerm_subnet" "avd-bastion-sn" {
+  name                 = "avd-bastion-sn"
+  resource_group_name  = azurerm_resource_group.avd-vnet.name
+  virtual_network_name = azurerm_virtual_network.avd.name
+  address_prefixes     = [var.cidr_bastion_subnet]
+}
+
+# Bastion subnet NSG
+resource "azurerm_network_security_group" "bastion" {
+  name                = "bastion-nsg"
+  location            = azurerm_resource_group.avd-vnet.location
+  resource_group_name = azurerm_resource_group.avd-vnet.name
+
+  security_rule {
+    name                       = "AllowSyncWithAzureAD"
+    priority                   = 101
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "212.159.71.60"
+    destination_address_prefix = "*"
+  }
+}
+
+resource azurerm_subnet_network_security_group_association "bastion-nsg-assoc" {
+  subnet_id                 = azurerm_subnet.avd-bastion-sn.id
+  network_security_group_id = azurerm_network_security_group.bastion.id
+}
+
 # AD DS NSG
 resource "azurerm_network_security_group" "adds" {
   name                = "adds-nsg"
