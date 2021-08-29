@@ -4,10 +4,11 @@
 resource "azuread_group" "dc_admins" {
   display_name      = "AAD DC Administrators"
   security_enabled  = true
+}
 
-  members = [ 
-      azuread_user.dc_admin.object_id
-   ]
+resource "azuread_group_member" "dc_admin_group_assignment" {
+  group_object_id  = azuread_group.dc_admins.object_id
+  member_object_id = azuread_user.dc_admin.object_id
 }
 
 resource "azuread_user" "dc_admin" {

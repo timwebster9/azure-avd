@@ -32,4 +32,8 @@ resource "azurerm_active_directory_domain_service" "adds" {
     sync_ntlm_passwords     = true
     sync_on_prem_passwords  = true
   }
+
+  depends_on = [
+    azuread_group_member.dc_admin_group_assignment
+  ]
 }
