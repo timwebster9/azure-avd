@@ -53,6 +53,6 @@ module "aadds" {
     resource_group_name   = "aadds-rg"
     domain_name           = var.aadds_domain_name
     sku                   = var.aadds_sku
-    subnet_id             = module.aadds_subnet.id
-    additional_recipients = var.aadds_email_recipients
+    subnet_id             = module.aadds_vnet.aadds_subnet_id
+    email_recipients      = var.aadds_email_recipients
 }
