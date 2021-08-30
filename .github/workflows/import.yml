@@ -1,0 +1,36 @@
+name: import
+on:
+  workflow_dispatch:
+    inputs:
+      resource:
+        description: 'The resource to import'
+        default: ''
+        required: true
+      resourceId:
+        description: 'The resource ID to import'
+        default: ''
+        required: true
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.5
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terrafrom import
+        run: terraform import ${{ github.event.inputs.resource }} "${{ github.event.inputs.resourceId }}"
+
