@@ -1,4 +1,4 @@
-name: destroy
+name: destroy-aadds
 on:
   workflow_dispatch:
 
