@@ -57,6 +57,11 @@ variable aadds_dc2 {
   description = "AAD DS DC server 2 IP address"
 }
 
+variable allow_bastion_rdp_ip {
+  type = string
+  description = "Source IP to allow RDP to bastion"
+}
+
 ###########################################
 # Azure Active Directory Domain Services 
 ###########################################

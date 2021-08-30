@@ -18,6 +18,8 @@ sessionhost_subnet_cidr  = "10.0.0.64/26"
 aadds_dc1 = "10.0.0.4"
 aadds_dc2 = "10.0.0.5"
 
+allow_bastion_rdp_ip = "212.159.71.60"
+
 ###########################################
 # Azure Active Directory Domain Services 
 ###########################################

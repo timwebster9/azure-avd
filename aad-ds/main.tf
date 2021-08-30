@@ -44,6 +44,7 @@ module "aadds_vnet" {
     bastion_subnet_cidr     = [var.bastion_subnet_cidr]
     sessionhost_subnet_name = "session-hosts-sn"
     sessionhost_subnet_cidr = [var.sessionhost_subnet_cidr]
+    allow_rdp_ip            = var.allow_bastion_rdp_ip
 }
 
 ###########################################

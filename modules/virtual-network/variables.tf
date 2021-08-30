@@ -44,3 +44,7 @@ variable sessionhost_subnet_name {
 variable sessionhost_subnet_cidr {
   type = list
 }
+
+variable allow_rdp_ip {
+  type = string
+}
