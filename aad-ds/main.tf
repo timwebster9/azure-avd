@@ -10,5 +10,5 @@ module "aadds_vnet" {
     location            = var.location
     resource_group_name = module.vnet_rg.name
     address_space       = [var.aadds_vnet_cidr]
-    dns_servers         = [var.aadds_dns1, var.aadds_dns2]
+    dns_servers         = [var.aadds_dc1, var.aadds_dc2]
 }
