@@ -1,19 +1,9 @@
-name: deploy-aadds
-
+name: destroy
 on:
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - '**.md'
-      - '.github/**'
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-      - '**.md'
   workflow_dispatch:
 
 jobs:
-  deploy-aadds:
+  destroy-aadds:
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -33,11 +23,9 @@ jobs:
       - name: Terraform init
         run: terraform -chdir=${{ env.FOLDER }} init
 
-      - name: Terrafrom plan
-        run: terraform -chdir=${{ env.FOLDER }} plan
+      - name: Terrafrom destroy
+        run: terraform chdir=${{ env.FOLDER }} destroy -auto-approve
 
-      - name: Terrafrom apply
-        if: ${{ success() }}
-        run: terraform -chdir=${{ env.FOLDER }} apply -auto-approve
-
-        
+      - name: Terrafrom destroy (retry)
+        if: ${{ failure() }}
+        run: terraform chdir=${{ env.FOLDER }} destroy -auto-approve
