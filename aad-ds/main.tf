@@ -14,21 +14,24 @@ module "aadds_vnet" {
 }
 
 module "aadds_subnet" {
-    name = "aadds-sn"
+    source               = "../modules/subnet"
+    name                 = "aadds-sn"
     resource_group_name  = module.vnet_rg.name
     virtual_network_name = module.aadds_vnet.name
     address_prefixes     = [var.aadds_subnet_cidr]
 }
 
 module "bastion_subnet" {
-    name = "bastion-sn"
+    source               = "../modules/subnet"
+    name                 = "bastion-sn"
     resource_group_name  = module.vnet_rg.name
     virtual_network_name = module.aadds_vnet.name
     address_prefixes     = [var.bastion_subnet_cidr]
 }
 
 module "session_hosts_subnet" {
-    name = "session-hosts-sn"
+    source               = "../modules/subnet"
+    name                 = "session-hosts-sn"
     resource_group_name  = module.vnet_rg.name
     virtual_network_name = module.aadds_vnet.name
     address_prefixes     = [var.avd_hosts_subnet_cidr]
