@@ -33,7 +33,7 @@ module "aadds_vnet" {
     location                = var.location
     resource_group_name     = "vnet-rg"
     vnet_name               = "aadds-vnet"
-    address_space           = [var.aadds_vnet_cidr]
+    vnet_address_space      = [var.aadds_vnet_cidr]
     dns_servers             = [var.aadds_dc1, var.aadds_dc2]
     aadds_subnet_name       = "aadds-sn"
     aadds_subnet_cidr       = [var.aadds_subnet_cidr]
