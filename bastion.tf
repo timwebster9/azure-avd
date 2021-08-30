@@ -21,6 +21,10 @@ resource "azurerm_network_interface" "bastion_nic" {
     private_ip_address_allocation = "dynamic"
     public_ip_address_id          = azurerm_public_ip.bastion_pip.id
   }
+
+  depends_on = [
+      azurerm_active_directory_domain_service.adds
+  ]
 }
 
 resource "azurerm_windows_virtual_machine" "bastion" {

@@ -14,6 +14,10 @@ resource "azurerm_network_interface" "wvd_vm1_nic" {
     subnet_id                     = azurerm_subnet.avd-hosts-sn.id
     private_ip_address_allocation = "dynamic"
   }
+
+  depends_on = [
+      azurerm_active_directory_domain_service.adds
+  ]
 }
 
 resource "azurerm_windows_virtual_machine" "wvd_vm1" {
