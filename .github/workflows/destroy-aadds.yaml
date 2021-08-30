@@ -24,8 +24,8 @@ jobs:
         run: terraform -chdir=${{ env.FOLDER }} init
 
       - name: Terrafrom destroy
-        run: terraform chdir=${{ env.FOLDER }} destroy -auto-approve
+        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve
 
       - name: Terrafrom destroy (retry)
         if: ${{ failure() }}
-        run: terraform chdir=${{ env.FOLDER }} destroy -auto-approve
+        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve
