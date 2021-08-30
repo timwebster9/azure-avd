@@ -3,9 +3,9 @@ variable name {
   description = "Subnet name"
 }
 
-variable location {
+variable resource_group_name {
   type = string
-  description = "Subnet location"
+  description = "Subnet resource group name"
 }
 
 variable virtual_network_name {
