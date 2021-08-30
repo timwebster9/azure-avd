@@ -78,13 +78,13 @@ module "aadds_rg" {
     location = var.location
 }
 
-module "aadds" {
-    source                = "../modules/azure-active-directory-domain-services"
-    name                  = "avd-aadds"
-    location              = var.location
-    resource_group_name   = module.aadds_rg.name
-    domain_name           = var.aadds_domain_name
-    sku                   = var.aadds_sku
-    subnet_id             = module.aadds_subnet.id
-    additional_recipients = var.aadds_email_recipients
-}
+# module "aadds" {
+#     source                = "../modules/azure-active-directory-domain-services"
+#     name                  = "avd-aadds"
+#     location              = var.location
+#     resource_group_name   = module.aadds_rg.name
+#     domain_name           = var.aadds_domain_name
+#     sku                   = var.aadds_sku
+#     subnet_id             = module.aadds_subnet.id
+#     additional_recipients = var.aadds_email_recipients
+# }
