@@ -4,17 +4,18 @@
 resource "azuread_user" "dc_admin1" {
   user_principal_name     = var.aadds_admin1_upn
   display_name            = var.aadds_admin1_display_name
-  force_password_change   = false # default setting but including for info
+  force_password_change   = true # default setting but including for info
   password                = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
 resource "azuread_user" "dc_admin2" {
   user_principal_name     = var.aadds_admin2_upn
   display_name            = var.aadds_admin2_display_name
-  force_password_change   = false # default setting but including for info
+  force_password_change   = true # default setting but including for info
   password                = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
+# 'magic' group whose users will automatically be AAD DS admins
 resource "azuread_group" "dc_admins" {
   display_name      = "AAD DC Administrators"
   security_enabled  = true
