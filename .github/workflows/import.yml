@@ -12,7 +12,7 @@ on:
         required: true
 
 jobs:
-  destroy:
+  import:
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
