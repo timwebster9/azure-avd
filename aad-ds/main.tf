@@ -1,17 +1,19 @@
 ###############################
 # AAD Domain Services IAM
 ###############################
+# Primary AAD DS admin
 resource "azuread_user" "dc_admin1" {
   user_principal_name     = var.aadds_admin1_upn
   display_name            = var.aadds_admin1_display_name
-  force_password_change   = true # default setting but including for info
+  force_password_change   = true # user must change password to sync with AAD DS
   password                = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
+# Secondary AAD DS admin
 resource "azuread_user" "dc_admin2" {
   user_principal_name     = var.aadds_admin2_upn
   display_name            = var.aadds_admin2_display_name
-  force_password_change   = true # default setting but including for info
+  force_password_change   = true # user must change password to sync with AAD DS
   password                = data.azurerm_key_vault_secret.adds-admin-password.value
 }
 
