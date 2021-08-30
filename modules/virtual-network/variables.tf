@@ -10,16 +10,37 @@ variable location {
 
 variable resource_group_name {
   type = string
-  description = "Virtual network resource group name"
 }
 
-variable address_space {
+variable vnet_address_space {
   type = list
-  description = "Virtual network address space"
 }
 
 variable dns_servers {
   type = list
-  description = "Virtual network DNS servers"
   default = []
+}
+
+variable aadds_subnet_name {
+  type = string
+}
+
+variable aadds_subnet_cidr {
+  type = list
+}
+
+variable bastion_subnet_name {
+  type = string
+}
+
+variable bastion_subnet_cidr {
+  type = list
+}
+
+variable sessionhost_subnet_name {
+  type = string
+}
+
+variable sessionhost_subnet_cidr {
+  type = list
 }

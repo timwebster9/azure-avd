@@ -3,10 +3,15 @@
 # SP Azure AD permissions required:
 #   - Global Administrator (https://docs.microsoft.com/en-us/azure/active-directory-domain-services/powershell-create-instance#prerequisites)
 ####################################
+resource "azurerm_resource_group" "aadds_rg" {
+  name     = var.resource_group_name
+  location = var.location
+}
+
 resource "azurerm_active_directory_domain_service" "aadds" {
   name                = var.name
-  location            = var.location
-  resource_group_name = var.resource_group_name
+  location            = azurerm_resource_group.aadds_rg.location
+  resource_group_name = azurerm_resource_group.aadds_rg.name
 
   domain_name           = var.domain_name
   sku                   = var.sku

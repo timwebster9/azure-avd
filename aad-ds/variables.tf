@@ -42,7 +42,7 @@ variable bastion_subnet_cidr {
   description = "Bastion subnet CIDR"
 }
 
-variable avd_hosts_subnet_cidr {
+variable sessionhosts_subnet_cidr {
   type = string
   description = "Session hosts subnet CIDR"
 }
