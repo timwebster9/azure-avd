@@ -8,6 +8,7 @@ resource "azurerm_public_ip" "bastion_pip" {
   resource_group_name = azurerm_resource_group.bastion-hosts.name
   location            = azurerm_resource_group.bastion-hosts.location
   allocation_method   = "Static"
+  domain_name_label   = "avdbastion"
 }
 
 resource "azurerm_network_interface" "bastion_nic" {
