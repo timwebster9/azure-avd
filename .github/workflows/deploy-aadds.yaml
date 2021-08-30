@@ -3,11 +3,14 @@ name: deploy-aadds
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'aad-ds/**'
     paths-ignore:
       - '**.md'
-      - '.github/**'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'aad-ds/**'
     paths-ignore:
       - '**.md'
   workflow_dispatch:

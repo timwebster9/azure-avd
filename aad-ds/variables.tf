@@ -80,7 +80,17 @@ variable aadds_admin1_upn {
   description = "AAD DS primary admin user UPN"
 }
 
+variable aadds_admin1_display_name {
+  type = string
+  description = "AAD DS primary admin user display name"
+}
+
 variable aadds_admin2_upn {
   type = string
   description = "AAD DS secondary admin user UPN"
+}
+
+variable aadds_admin2_display_name {
+  type = string
+  description = "AAD DS secondary admin user display name"
 }
