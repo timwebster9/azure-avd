@@ -13,6 +13,6 @@ terraform {
     resource_group_name  = "mgmt-rg"
     storage_account_name = "tfstatetimw"
     container_name       = "tfstate"
-    key                  = "avd.tfstate"
+    key                  = "aadds.tfstate"
   }
 }
