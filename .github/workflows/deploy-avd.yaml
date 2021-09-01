@@ -20,6 +20,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       FOLDER: avd
+      GLOBAL_VARS: ../globals.tfvars
 
     steps:
       - uses: actions/checkout@v2
@@ -33,10 +34,10 @@ jobs:
         run: terraform -chdir=${{ env.FOLDER }} init
 
       - name: Terrafrom plan
-        run: terraform -chdir=${{ env.FOLDER }} plan -var-file=globals.tfvars
+        run: terraform -chdir=${{ env.FOLDER }} plan -var-file=${{ env.GLOBAL_VARS }}
 
       - name: Terrafrom apply
         if: ${{ success() }}
-        run: terraform -chdir=${{ env.FOLDER }} apply -auto-approve
+        run: terraform -chdir=${{ env.FOLDER }} apply -auto-approve -var-file=${{ env.GLOBAL_VARS }}
 
         
