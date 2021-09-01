@@ -11,6 +11,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       FOLDER: avd
+      GLOBAL_VARS: ../globals.tfvars
 
     steps:
       - uses: actions/checkout@v2
@@ -24,8 +25,8 @@ jobs:
         run: terraform -chdir=${{ env.FOLDER }} init
 
       - name: Terrafrom destroy
-        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve
+        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve -var-file=${{ env.GLOBAL_VARS }}
 
       - name: Terrafrom destroy (retry)
         if: ${{ failure() }}
-        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve
+        run: terraform -chdir=${{ env.FOLDER }} destroy -auto-approve -var-file=${{ env.GLOBAL_VARS }}
