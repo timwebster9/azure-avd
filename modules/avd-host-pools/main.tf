@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_virtual_desktop_host_pool" "avd_pool" {
-  for_each = var.hostpools
+  for_each = var.host_pools
 
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
