@@ -33,7 +33,7 @@ jobs:
         run: terraform -chdir=${{ env.FOLDER }} init
 
       - name: Terrafrom plan
-        run: terraform -chdir=${{ env.FOLDER }} plan
+        run: terraform -chdir=${{ env.FOLDER }} plan -var-file=globals.tfvars
 
       - name: Terrafrom apply
         if: ${{ success() }}
